@@ -1,0 +1,25 @@
+- hosts: all
+  gather_facts: False
+
+  tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    become: true
+    become_method: sudo
+
+- hosts: webservers
+  vars:
+    wp_mysql_db: 'wordpressdb'
+    wp_mysql_user: 'wordpressdb'
+    wp_mysql_password: '1234'
+    wp_mysql_host: '192.168.1.83'
+  roles:
+   - server
+   - php
+   - wordpress
+
+- hosts: dbservers
+
+  roles:
+   - mysql
+

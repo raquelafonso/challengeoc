@@ -1,0 +1,6 @@
+
+[webservers]
+192.168.1.85 ansible_user=serverword ansible_pass=1234
+
+[dbservers]
+192.168.1.83 ansible_user=serversql ansible_pass=1234
